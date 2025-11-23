@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Saga: The Infinite Slither </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app">
+        <!-- LEFT: Game -->
+        <div class="left">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+                <div>
+                    <div class="panel" style="display:flex;flex-direction:column; margin-left: 15px;">
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <div style="width:10px;height:10px;border-radius:4px;background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 6px 18px rgba(124,58,237,0.18)"></div>
+                            <div style="font-weight:400">THE SNAKE SAGA</div>
+                        </div>
+                        <div class="small-muted" style="margin-top:6px;">Infinite Slither — polished edition</div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:8px; margin-right: 15px;">
+                    <div class="panel" style="text-align:center;min-width:120px;">
+                        <div class="small-muted">Score</div>
+                        <div id="score" class="big-num">0</div>
+                    </div>
+                    <div class="panel" style="text-align:center;min-width:120px;">
+                        <div class="small-muted">High Score</div>
+                        <div id="high-score" class="big-num">0</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Canvas -->
+            <canvas id="game-board" width="520" height="520"></canvas>
+            <!-- Overlay message (Game Over / Pause) -->
+            <div class="overlay">
+                <div id="overlay-msg" class="msg panel">
+                    <div id="overlay-title" style="font-weight:600;font-size:12px;">Ready?</div>
+                    <div id="overlay-body" class="muted" >Press Start to play — arrow keys or WASD to move.</div>
+                    <div style="display:flex;gap:8px;justify-content:center;">
+                        <button style="font-size: 10px; margin-left: 15px; margin-top: 5px;" id="start-btn" class="btn btn-primary">Start Game</button>
+                        <button id="resume-btn" class="btn" style="display:none;">Resume</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RIGHT: Game -->
+        <div class="right">
+            <div class="panel">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                        <div class="muted">Difficulty</div>
+                        <div style="font-weight:500; font-size: 13px;">Speeds up as you grow</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="muted">Speed</div>
+                        <div id="speed-display" style="font-weight:300; font-size: 14px;">Normal</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px;">
+                    <label class="small-muted">Board Size</label>
+                    <div style="display:flex;gap:8px;margin-top:15px;">
+                        <select id="size-select" class="btn" style="padding:10px;border-radius:10px; font-size: 12px;">
+                            <option style="color: rgb(0, 0, 0);" value="18">18 × 18 (compact)</option>
+                            <option style="color: rgb(0, 0, 0);" value="20" selected>20 × 20 (balanced)</option>
+                            <option style="color: rgb(0, 0, 0);" value="24">24 × 24 (challenging)</option>
+                        </select>
+                        <select id="theme-select" class="btn" style="padding:8px;border-radius:8px; font-size: 12px;">
+                            <option style="color: rgb(0, 0, 0);" value="classic">Classic</option>
+                            <option style="color: rgb(0, 0, 0);" value="neon" selected>Neon</option>
+                            <option style="color: rgb(0, 0, 0);" value="retro">Retro</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:15px;font-size: 12px;">
+                    <button style="padding: 10px 35px;" id="pause-btn" class="btn">Pause</button>
+                    <button id="restart-btn" class="btn btn-danger">Restart</button>
+                </div>
+                <div style="margin-top:10px;font-size:11px;color:var(--muted);"> Controls: Arrow keys or WASD, Pause: P, Use the size/theme dropdowns before starting for best experience.</div>
+            </div>
+            <div class="panel" style=" margin-top: 7px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                        <div class="small-muted">Session info</div>
+                        <div style="font-weight:500; font-size: 12px;">Plays: <span id="plays-count">0</span></div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="small-muted">Top Speed</div>
+                        <div id="min-speed-display" style="font-weight:500; font-size: 12px;">N/A</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px;">
+                    <div class="small-muted">Tips</div>
+                    <ul style="margin-top:8px;color:var(--muted);font-size:11px;">
+                        <li>Plan turns ahead walls are unforgiving.</li>
+                        <li>Use the board size to increase/decrease difficulty.</li>
+                        <li>Neon theme gives clearer contrast on smaller screens.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel" style="display:flex;flex-direction:column;gap:8px; margin-top: 7px;">
+                <div class="small-muted">About</div>
+                <div style="font-size:11px;color:var(--muted);"> Polished single-file Snake game, responsive UI, high score persistence. Built for a laptop-first experience but works on most screens.</div>
+                <div style="display:flex;gap:8px;margin-top:8px; font-size: 12px;">
+                    <button id="download-btn" class="btn">Download Replay (disabled)</button>
+                    <button id="mute-btn" class="btn">🔊 Sound</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
