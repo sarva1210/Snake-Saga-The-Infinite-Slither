@@ -2,10 +2,10 @@
     --bg:#0b1220;
     --panel:#0f1724cc;
     --muted:#94a3b8;
-    --accent1:#6366f1; /* indigo */
-    --accent2:#ec4899; /* pink */
+    --accent1:#6366f1; 
+    --accent2:#ec4899; 
     --glass: rgba(255,255,255,0.04);
-    --tile-bg:#111827; /* slightly different dark for board fallback */
+    --tile-bg:#111827;
 }
 
 html,body{
@@ -138,29 +138,6 @@ html,body{
 }
 
 /* overlay message */
-/* .overlay {
-    position:relative;
-    width:550px;
-    max-width:calc(100% - 12px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-top:-370px; 
-    pointer-events:none;
-}
-.overlay .msg {
-    height: 70px;
-    width: 460px;
-    pointer-events:auto;
-    background: rgba(6, 34, 91, 0.7);
-    border-radius:10px;
-    padding:5px 10px;
-    border:1px solid rgba(255,255,255,0.04);
-    box-shadow: 0 5px 15px rgba(2,6,23,0.6);
-    transform:translateY(-70px);
-    display:none;
-    text-align:center;
-} */
 
 .overlay {
     position: absolute;

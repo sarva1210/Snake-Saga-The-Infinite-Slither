@@ -41,7 +41,7 @@ let soundOn = true;
 const THEMES = {
     neon: { bg: '#081226', snakeHead: '#84F3C9', snakeBody: '#06B6D4', food: '#FB7185' },
     classic: { bg: '#0b1220', snakeHead: '#4ade80', snakeBody: '#10b981', food: '#ef4444' },
-    retro: { bg: '#121212', snakeHead: '#FFD166', snakeBody: '#06D6A0', food: '#FF6B6B' },
+    retro: { bg: '#121212', snakeHead: '#FFD166', snakeBody: '#1f876bff', food: '#8e1111ff' },
 };
 
 /* Audio (simple beep) */
@@ -177,7 +177,7 @@ function roundRect(ctx, x, y, w, h, r){
     ctx.closePath();
 }
 
-/* Game logic */
+
 function update(){
     if(!running || paused) return;
 
@@ -195,7 +195,7 @@ function update(){
         return;
     }
 
-    // self collision
+
     if(snake.some((p,i) => i>0 && p.x===head.x && p.y===head.y)){
         endGame();
         return;
@@ -210,7 +210,7 @@ function update(){
         scoreEl.textContent = score;
         spawnFood();
         beep(880, 0.05, 0.08);
-        // speed increases slightly every 3 points or so
+ 
         if(score % 3 === 0 && tickInterval > MIN_TICK){
             tickInterval = Math.max(MIN_TICK, Math.round(tickInterval - 6));
             restartTick(); // update interval
